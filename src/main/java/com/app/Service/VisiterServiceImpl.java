@@ -1,6 +1,7 @@
 package com.app.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,25 @@ public class VisiterServiceImpl implements VisiterService{
             return visiter;
 	}
 
+	
 	@Override
-	public String deleteVisitorRequest(String email) {
+	public String deleteVisitorRequest(Integer id) {
+		Optional<Visiter> v = visiterDAO.findById(id);
+		
+		if(v.isPresent())
+		{
+			visiterDAO.delete(v.get());
+			return "Visitor deleted";
+		}
+		else return "Visitor Not found";
+		
+	}
+	
+	@Override
+	public String deleteAllVisitorsWithEmail(String email) {
 		List<Visiter> v = visiterDAO.findAllByEmail(email);
 		visiterDAO.deleteAll(v);
-		return "Visiter deleted";
+		return "Visiters deleted";
 	}
 
 	@Override
@@ -32,5 +47,6 @@ public class VisiterServiceImpl implements VisiterService{
 		List<Visiter> visterList = visiterDAO.findAll();
 		return visterList;
 	}
+
 
 }

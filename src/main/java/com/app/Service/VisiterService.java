@@ -8,7 +8,9 @@ public interface VisiterService {
 	
 	public Visiter takeVisitorRequest(Visiter visiter);
 	
-	public String deleteVisitorRequest(String email);
+	public String deleteVisitorRequest(Integer id);
+	
+	public String deleteAllVisitorsWithEmail(String email);
 	
 	public List<Visiter> getAllVisitors();
 

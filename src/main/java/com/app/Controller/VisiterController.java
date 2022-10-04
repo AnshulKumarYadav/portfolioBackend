@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.Model.Visiter;
@@ -28,10 +29,15 @@ public class VisiterController {
 		return visiterServiceImpl.takeVisitorRequest(visiter);
 	}
 	
-	@DeleteMapping("/deleteVisiter/{email}")
-	public String deleteVisiterDetails(@Valid @PathVariable("email") String email)
+	@DeleteMapping("/deleteVisiter/{id}")
+	public String deleteVisiterDetails(@Valid @PathVariable("id") Integer id)
 	{
-		return visiterServiceImpl.deleteVisitorRequest(email);
+		return visiterServiceImpl.deleteVisitorRequest(id);
+	}
+	@DeleteMapping("/deleteAllVisiter")
+	public String deleteAllVisiters(@Valid @RequestParam("email") String email)
+	{
+		return visiterServiceImpl.deleteAllVisitorsWithEmail(email);
 	}
 	
 	@GetMapping("/visiters")
