@@ -21,10 +21,10 @@ public class VisiterServiceImpl implements VisiterService{
 	}
 
 	@Override
-	public Visiter deleteVisitorRequest(String email) {
-		Visiter v = visiterDAO.findByEmail(email);
-		visiterDAO.delete(v);
-		return v;
+	public String deleteVisitorRequest(String email) {
+		List<Visiter> v = visiterDAO.findAllByEmail(email);
+		visiterDAO.deleteAll(v);
+		return "Visiter deleted";
 	}
 
 	@Override

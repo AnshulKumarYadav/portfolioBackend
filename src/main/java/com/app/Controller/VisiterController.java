@@ -28,8 +28,8 @@ public class VisiterController {
 		return visiterServiceImpl.takeVisitorRequest(visiter);
 	}
 	
-	@DeleteMapping("/deleteVisiter")
-	public Visiter deleteVisiterDetails(@Valid @PathVariable String email)
+	@DeleteMapping("/deleteVisiter/{email}")
+	public String deleteVisiterDetails(@Valid @PathVariable("email") String email)
 	{
 		return visiterServiceImpl.deleteVisitorRequest(email);
 	}
